@@ -1,0 +1,63 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 19, 2019, 12:58:43 PM
+    Author     : Voja
+*/
+body {
+    background-image: url("svemir.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+}
+
+.prva {  color:white;
+    
+}
+
+.Ime {color: #f0bff2; opacity: 0.8; font-weight:bold;
+      font-size:114%;}
+.licni {color:#03c0ff;font-style: italic; opacity: 0.8;font-weight:bold; }
+
+.fof {color:#03c0ff; opacity: 0.8; font-style: italic; font-weight: bold;}
+.sugg {color: #03c0ff; opacity: 0.8; font-style: italic; font-weight: bold;}
+.L {color: white;    font-size: 110%;
+  
+  }
+.M {color:white;   font-size: 110%;
+
+  }
+
+  h3.h3 {
+      color: white;
+      opacity: 0.8;
+      text-align: center;
+      font-style:initial;
+     
+  }
+
+
+  
+  table.tabela{
+      width: 100%;
+      border: 10px solid transparent;
+      background-image:   linear-gradient(to right,rgba(79,39,62,0.3),rgba(182,89,137,0.3),rgba(29,47,131,0.3));
+      border-spacing: 5px;
+      /*-moz-background-image: linear-gradient(purple, blue);*/
+      background-origin:  border-box;
+      
+  }
+  
+  table tr {
+      border: 2px solid;
+      border-color: rgba(256,256,256,0.5);
+  }
+  table td{
+      padding: 5px;
+  }
+ 
+
+
