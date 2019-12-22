@@ -61,8 +61,7 @@ public class Prijatelji extends HttpServlet {
                     }
                 }
 
-                request.setAttribute("ListaLjudi", listadirektnih);
-                request.getRequestDispatcher("drugastrana.jsp").forward(request, response);
+             
 
             }
 
@@ -73,6 +72,7 @@ public class Prijatelji extends HttpServlet {
                 idPrijatelji = vracaniz(prijatelji);
 
                 String upit = "SELECT * FROM ljudi WHERE id !=" + id;
+        
                 rs = st.executeQuery(upit);
                 while (rs.next()) {
                     ljudi.add(new Covek(rs.getInt("id"), rs.getString("ime"), rs.getString("prezime"), rs.getInt("godine"), rs.getString("pol"), rs.getString("prijatelji")));
@@ -81,17 +81,31 @@ public class Prijatelji extends HttpServlet {
                 for (Covek covek : ljudi) {
                     String idPoredjenje[] = new String[1];
                     idPoredjenje = vracaniz(covek.getPrijatelji());
+      
                     for (String s : idPoredjenje) {
+                         
                         for (String idPrijatelja : idPrijatelji) {
                             if (s.equals(idPrijatelja) && !s.equals(id)) {
                                 listadirektnih.add(covek);
+                                
                             }
                         }
-                    }
-                }
+                    }  
+                    
+                    
+                       
+                } for (int i = 0; i < listadirektnih.size(); i++ ) { 
+                String[] NizPrijatelja = vracaniz (listadirektnih.get(i).getPrijatelji());
+                for (String Prolaz: NizPrijatelja) {
+                    
+                if (Prolaz.equals(id)){
+                listadirektnih.remove(listadirektnih.get(i));
+                i=i-1;
+                } }
+                   
+                } 
 
-                request.setAttribute("ListaLjudi", listadirektnih);
-                request.getRequestDispatcher("drugastrana.jsp").forward(request, response);
+               
             }
 
             if (tip.equals("suggested")) {
@@ -115,21 +129,38 @@ public class Prijatelji extends HttpServlet {
                         for (String idPrijatelja : idPrijatelji) {
                             if (s.equals(idPrijatelja) && !s.equals(id)) {
                                 count++;
-                            }
+                            } 
 
                         }
 
                     }
                     if (count >= 2) {
                         listadirektnih.add(covek);
-                    }
+                    } 
 
-                }
+                } for (int i = 0; i < listadirektnih.size(); i++ ) { 
+                String[] NizPrijatelja = vracaniz (listadirektnih.get(i).getPrijatelji());
+                for (String Prolaz: NizPrijatelja) {
+                    
+                if (Prolaz.equals(id)){
+                listadirektnih.remove(listadirektnih.get(i));
+                i=i-1;
+                } } }
 
-                request.setAttribute("ListaLjudi", listadirektnih);
-                request.getRequestDispatcher("drugastrana.jsp").forward(request, response);
+                
             }
-
+            for(int i=0; i < listadirektnih.size(); i++){
+            for (int j=i+1; j < listadirektnih.size(); j++ ) {
+                if (listadirektnih.get(i).getId()== listadirektnih.get(j).getId())
+                {
+                    listadirektnih.remove(listadirektnih.get(i));
+                    i=i-1;
+                }
+            }
+            }
+          request.setAttribute("ListaLjudi", listadirektnih);
+                request.getRequestDispatcher("drugastrana.jsp").forward(request, response);
+            
         } catch (ClassNotFoundException cnfe) {
             request.setAttribute("Greska", cnfe.toString()
             );
